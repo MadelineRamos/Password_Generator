@@ -9,6 +9,7 @@ var generateBtn = document.querySelector("#generate");
 
 function generatePassword () {
   var passwordLength = window.prompt("Please enter the length of your password");
+  console.log("Password length: " + passwordLength);
 
   while (passwordLength < 8 || passwordLength > 128) {
     window.alert("Please choose a number between 8 and 128");
@@ -27,6 +28,41 @@ function generatePassword () {
     numbers = window.confirm("Would you like to include numbers?");
     specialCharacters = window.confirm("Would you like to include special characters?");
   }
+
+  console.log("Confirm lower case: " + lowerCase);
+
+  // make a list of the conditions which are true
+  var list = [];
+  if (lowerCase) {
+    list.push(lowerCaseArray);
+  }
+  if (upperCase){
+    list.push(upperCaseArray);
+  }
+  if (numbers) {
+    list.push(numberArray);
+  }
+  if (specialCharacters) {
+    list.push(specialCharactersArray);
+  }
+
+  // for loop for the password length
+  var finalPassword = "";
+  for (var i = 0; i < passwordLength; i++) {
+    var randomListIndex;
+    if (i < list.length) {
+      randomListIndex = i;
+    } else {
+      randomListIndex = Math.floor(Math.random() * list.length);
+    }
+    var randomListArray = list[randomListIndex];
+    var randomArrayIndex = Math.floor(Math.random() * randomListArray.length);
+    var randomCharacter = randomListArray[randomArrayIndex];
+    finalPassword += randomCharacter;
+  }
+
+  // return the generated password
+  return finalPassword;
 }
 
 // Write password to the #password input
