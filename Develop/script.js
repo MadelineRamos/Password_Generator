@@ -1,9 +1,9 @@
-// Assignment code here
-
+// arrays are used to hold values
 var lowerCaseArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var upperCaseArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 var numberArray = ["1","2","3","4","5","6","7","8","9","0"];
 var specialCharactersArray = ["!","#","$","%","&","*","+","/",":",";","<","=",">","?","@","["];
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -31,7 +31,7 @@ function generatePassword () {
 
   console.log("Confirm lower case: " + lowerCase);
 
-  // make a list of the conditions which are true
+  // make a list of the array conditions which are true
   var list = [];
   if (lowerCase) {
     list.push(lowerCaseArray);
@@ -58,7 +58,7 @@ function generatePassword () {
     var randomListArray = list[randomListIndex];
     var randomArrayIndex = Math.floor(Math.random() * randomListArray.length);
     var randomCharacter = randomListArray[randomArrayIndex];
-    finalPassword += randomCharacter;
+    finalPassword = finalPassword.concat(randomCharacter);
   }
 
   // return the generated password
